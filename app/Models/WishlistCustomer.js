@@ -3,16 +3,16 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use("Model");
 
-class WishlistCustumer extends Model {
+class WishlistCustomer extends Model {
   static boot() {
     super.boot();
   }
-  custumer() {
-    return this.hasOne("App/Models/Custumer", "custumer_id", "id");
+  customer() {
+    return this.hasOne("App/Models/Customer", "customer_id", "id");
   }
   product() {
     return this.hasOne("App/Models/Product", "product_id", "id");
   }
 }
 
-module.exports = WishlistCustumer;
+module.exports = WishlistCustomer;
