@@ -30,6 +30,34 @@ class CustomerService {
     const columns = ["id", "name"];
     return await this.customerRepository.findByDynamic(columns, query);
   }
+
+  /**
+   * update
+   * @description Altera atributos da tabela Customer
+   * @param {int} id Identificador do customer.
+   * @param {Object} customer  Atributos a serem atualizados.
+   */
+  async update(id, customer) {
+    return await this.customerRepository.update(id, customer);
+  }
+
+  /**
+   * showCustomer
+   * @description Exibe dados de um determinado Customer
+   * @param {int} id Identificador do customer.
+   */
+  async showCustomer(id) {
+    return await this.customerRepository.findById(id);
+  }
+
+  /**
+   * showCustomer
+   * @description Exclui um determinado Customer
+   * @param {int} id Identificador do customer.
+   */
+  async deleteCustomer(id) {
+    return await this.customerRepository.delete(id);
+  }
 }
 
 module.exports = CustomerService;
