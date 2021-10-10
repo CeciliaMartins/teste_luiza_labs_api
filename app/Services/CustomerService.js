@@ -17,6 +17,19 @@ class CustomerService {
   async save(customer) {
     return await this.customerRepository.store(customer);
   }
+
+  /**
+   * findCustomerByEmail
+   * @description Busca cliente
+   * @param {Array} email Parametro a ser buscado.
+   */
+  async findCustomerByEmail(email) {
+    const query = {
+      email: email,
+    };
+    const columns = ["id", "name"];
+    return await this.customerRepository.findByDynamic(columns, query);
+  }
 }
 
 module.exports = CustomerService;
