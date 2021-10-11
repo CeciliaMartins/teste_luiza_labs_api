@@ -54,5 +54,9 @@ class BaseRepository {
     const model = await this.db.findOrFail(id);
     await model.delete();
   }
+
+  async listAllWithModel(props, query, model) {
+    return await this.db.query().select(props).where(query).with(model).first();
+  }
 }
 module.exports = BaseRepository;

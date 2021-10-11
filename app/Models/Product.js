@@ -6,6 +6,8 @@ class Product extends Model {
   static boot() {
     super.boot();
   }
+
+  
 }
 
 module.exports = Product;
