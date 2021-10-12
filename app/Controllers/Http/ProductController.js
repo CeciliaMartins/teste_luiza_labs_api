@@ -1,6 +1,10 @@
 "use strict";
 const Env = use("Env");
+/**
+ * @class ProductController.
+ * @description Classe de Produto.
 
+ */
 class ProductController {
   static get inject() {
     return [
@@ -15,6 +19,10 @@ class ProductController {
     this.wishlistCustomerService = wishlistCustomerService;
   }
 
+  /**
+   * findProductApiExternal
+   * @description Acessa a api de produtos da luizalabs.
+   */
   async findProductApiExternal({ response, params }) {
     try {
       const domain = Env.get("CHALLENGE_API");
@@ -32,6 +40,10 @@ class ProductController {
     }
   }
 
+  /**
+   * addWishListProduct
+   * @description Adiciona produtos favoritos.
+   */
   async addWishListProduct({ request, response }) {
     try {
       const body = request.only(["productListId", "costumerId"]);
@@ -40,7 +52,7 @@ class ProductController {
           body.costumerId,
           body.productListId
         );
-        
+
       if (isExistItemWishList == true) {
         response.send({
           status: 200,
@@ -60,7 +72,7 @@ class ProductController {
           response.send({
             status: 200,
             data: created,
-            message: "Successfully registered",
+            message: "OK",
           });
         } else {
           response.send({
@@ -75,10 +87,29 @@ class ProductController {
       throw new Error(error);
     }
   }
+
+  /**
+   * getProductDetailApiExternal
+   * @description Retorna a url da luizalabs com o detalhe de um determinado produto.
+   * @param {string} productListId Identificador do produto (api luizalabs)
+   */
   async getProductDetailApiExternal(productListId) {
     const domain = Env.get("CHALLENGE_API");
     const url = `${domain}/product/${productListId}/`;
     return await this.apiExternalService.findProductDetail(url);
+  }
+
+  /**
+   * getProductDetailApiExternal
+   * @description Lista todos os produtos já cadastrados como fevoritos.
+   */
+  async getWishlistProducts({ response }) {
+    const products = await this.productService.getWishlistProducts();
+    response.send({
+      status: 200,
+      data: products,
+      message: "OK",
+    });
   }
 }
 

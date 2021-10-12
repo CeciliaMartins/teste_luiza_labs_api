@@ -1,5 +1,8 @@
 "use strict";
 
+/**
+ * @class ProductService
+ */
 class ProductService {
   static get inject() {
     return [
@@ -13,10 +16,10 @@ class ProductService {
     this.wishlistCustomerRepository = wishlistCustomerRepository;
   }
   /**
-   * Store
+   * save
    * @description Cadastra produto e adiciona referência com a tabela wishlist_customer
    * @param { Object } data Dados a serem cadastrados.
-   * @param { Object } customerId Identificador do customer.
+   * @param { int } customerId Identificador do customer.
    */
   async save(data, customerId) {
     const product = {
@@ -38,7 +41,7 @@ class ProductService {
       const { id } = await this.productRepository.store(product);
       productId = id;
     } else {
-      productId = isExistProduct.id;        
+      productId = isExistProduct.id;
     }
     const wishlistCostumer = {
       product_id: productId,
@@ -48,6 +51,22 @@ class ProductService {
       wishlistCostumer
     );
     return wishlist.id;
+  }
+
+  /**
+   * getWishlistProducts
+   * @description Lista todos os produtos cadastrados.
+   */
+  async getWishlistProducts() {
+    const columns = [
+      "id",
+      "title",
+      "brand",
+      "price",
+      "image",
+      "product_list_id",
+    ];
+    return await this.productRepository.listaAll(columns);
   }
 }
 

@@ -6,4 +6,8 @@ Route.group("product", () => {
   Route.post("/", "ProductController.addWishListProduct")
     .validator("Products/WishlistStore")
     .middleware(["auth:jwt"]);
+
+  Route.get("wishlist", "ProductController.getWishlistProducts").middleware([
+    "auth:jwt",
+  ]);
 }).prefix("product");
