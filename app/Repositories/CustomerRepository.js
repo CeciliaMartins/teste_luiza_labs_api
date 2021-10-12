@@ -1,5 +1,7 @@
 const BaseRepository = require("./base/BaseRepository");
-
+/**
+ * @class CustomerRepository
+ */
 class CustomerRepository extends BaseRepository {
   static get inject() {
     return ["App/Models/Customer"];
@@ -7,6 +9,5 @@ class CustomerRepository extends BaseRepository {
   constructor(customer) {
     super(customer);
   }
-  
 }
 module.exports = CustomerRepository;

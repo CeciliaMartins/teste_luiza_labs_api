@@ -1,5 +1,7 @@
 "use strict";
-
+/**
+ * @class CustomerService
+ */
 class CustomerService {
   static get inject() {
     return ["App/Repositories/CustomerRepository"];
@@ -10,8 +12,8 @@ class CustomerService {
   }
 
   /**
-   * Store
-   * @description Cadastra cliente
+   * save
+   * @description Cadastra custumer
    * @param { Object } customer Dados a serem cadastrados.
    */
   async save(customer) {
@@ -20,8 +22,8 @@ class CustomerService {
 
   /**
    * findCustomerByEmail
-   * @description Busca cliente
-   * @param {Array} email Parametro a ser buscado.
+   * @description Busca custumer
+   * @param {Object} email Parametro a ser buscado.
    */
   async findCustomerByEmail(email) {
     const query = {
@@ -33,7 +35,7 @@ class CustomerService {
 
   /**
    * update
-   * @description Altera atributos da tabela Customer
+   * @description Altera atributos da tabela Customer.
    * @param {int} id Identificador do customer.
    * @param {Object} customer  Atributos a serem atualizados.
    */
@@ -43,7 +45,7 @@ class CustomerService {
 
   /**
    * showCustomer
-   * @description Exibe dados de um determinado Customer
+   * @description Exibe dados de um determinado Customer.
    * @param {int} id Identificador do customer.
    */
   async showCustomer(id) {
@@ -51,7 +53,7 @@ class CustomerService {
   }
 
   /**
-   * showCustomer
+   * deleteCustomer
    * @description Exclui um determinado Customer
    * @param {int} id Identificador do customer.
    */

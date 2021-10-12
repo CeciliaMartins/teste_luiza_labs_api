@@ -1,29 +1,31 @@
-'use strict'
+"use strict";
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
-const Schema = use('Schema')
+const Schema = use("Schema");
 
 class WishlistCustomersSchema extends Schema {
-  up () {
-    this.create('wishlist_customers', (table) => {
+  up() {
+    this.create("wishlist_customers", (table) => {
       table.increments();
+      table.integer("customer_id").unsigned();
       table
-        .integer("customer_id")
-        .unsigned()
+        .foreign("customer_id")
         .references("id")
-        .inTable("customers");
+        .inTable("customers")
+        .onDelete("CASCADE");
+      table.integer("product_id").unsigned();
       table
-        .integer("product_id")
-        .unsigned()
+        .foreign("product_id")
         .references("id")
-        .inTable("products");
-      table.timestamps()
-    })
+        .inTable("products")
+        .onDelete("CASCADE");
+      table.timestamps();
+    });
   }
 
-  down () {
-    this.drop('wishlist_customers')
+  down() {
+    this.drop("wishlist_customers");
   }
 }
 
-module.exports = WishlistCustomersSchema
+module.exports = WishlistCustomersSchema;

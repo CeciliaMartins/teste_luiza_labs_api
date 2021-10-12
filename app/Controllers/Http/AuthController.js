@@ -1,5 +1,8 @@
 "use strict";
-
+/**
+ * @description Classe de Autenticação.
+ * @class AuthController
+ */
 class AuthController {
   static get inject() {
     return ["App/Services/CustomerService"];
@@ -8,6 +11,10 @@ class AuthController {
     this.customerService = customerService;
   }
 
+  /**
+   * login
+   * @description Autenticação de usuário e retorna token para acessar os endpoints.
+   */
   async login({ request, auth, response }) {
     try {
       const { email, password } = request.all();
@@ -20,7 +27,7 @@ class AuthController {
         response.send({
           status: 200,
           data: data,
-          message: "Successfully",
+          message: "OK",
         });
       }
     } catch (error) {
@@ -28,7 +35,7 @@ class AuthController {
       return response.send({
         status: 401,
         data: "",
-        message: "You are not registered!",
+        message: "Você não é cadastrado!",
       });
     }
   }
