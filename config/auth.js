@@ -96,4 +96,15 @@ module.exports = {
       expiresIn: 600,
     },
   },
+  admin: {
+    serializer: "lucid",
+    model: "App/Models/Administrator",
+    scheme: "jwt",
+    uid: "email",
+    password: "password",
+    options: {
+      secret: Env.get("APP_KEY"),
+      expiresIn: "60m",
+    },
+  },
 };

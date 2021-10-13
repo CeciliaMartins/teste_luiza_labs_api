@@ -13,8 +13,9 @@ class WishlistCustomer extends Model {
   product() {
     return this.hasOne("App/Models/Product", "product_id", "id");
   }
-
- 
+  products() {
+    return this.belongsTo("App/Models/Product", "product_id", "id");
+  }
 }
 
 module.exports = WishlistCustomer;

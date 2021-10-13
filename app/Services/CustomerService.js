@@ -13,7 +13,7 @@ class CustomerService {
 
   /**
    * save
-   * @description Cadastra custumer
+   * @description Cadastra customer
    * @param { Object } customer Dados a serem cadastrados.
    */
   async save(customer) {
@@ -22,7 +22,7 @@ class CustomerService {
 
   /**
    * findCustomerByEmail
-   * @description Busca custumer
+   * @description Busca customer
    * @param {Object} email Parametro a ser buscado.
    */
   async findCustomerByEmail(email) {
@@ -59,6 +59,44 @@ class CustomerService {
    */
   async deleteCustomer(id) {
     return await this.customerRepository.delete(id);
+  }
+
+  /**
+   * listAll
+   * @description Lista todos os customers
+   */
+  async listAll() {
+    const columns = ["id", "name", "email", "created_at"];
+    return await this.customerRepository.listAll(columns);
+  }
+
+  /**
+   * listAll
+   * @description Lista todos os customers
+   */
+  async listAllWithProducts() {
+    const customers = await this.customerRepository.listAllWithProducts();
+
+    const newCustomers = [];
+
+    customers.toJSON().map((cust) => {
+      const costumer = {
+        id: cust.id,
+        name: cust.name,
+        created_at: cust.created_at,
+        products: [],
+      };
+      const { wishlistCustomers } = cust;
+
+      wishlistCustomers.map((wish) => {
+        const product = wish.products;
+        costumer.products.push({ ...product });
+      });
+
+      newCustomers.push({ costumer });
+    });
+
+    return newCustomers;
   }
 }
 

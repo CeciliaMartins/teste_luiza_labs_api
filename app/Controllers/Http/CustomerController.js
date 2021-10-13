@@ -80,6 +80,42 @@ class CustomerController {
       throw new Error(error);
     }
   }
+
+  /**
+   * show
+   * @description Lista todos os customers.
+   */
+  async index({ response }) {
+    try {
+      const customers = await this.customerService.listAll();
+      return response.send({
+        status: 200,
+        data: customers,
+        message: "OK",
+      });
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  }
+
+  /**
+   * listAllWithProducts
+   * @description Lista todos os customers com seus respectivos produtos favoritos.
+   */
+  async listAllWithProducts({ response }) {
+    try {
+      const customers = await this.customerService.listAllWithProducts();
+      return response.send({
+        status: 200,
+        data: customers,
+        message: "OK",
+      });
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  }
 }
 
 module.exports = CustomerController;

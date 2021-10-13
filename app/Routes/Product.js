@@ -8,6 +8,6 @@ Route.group("product", () => {
     .middleware(["auth:jwt"]);
 
   Route.get("wishlist", "ProductController.getWishlistProducts").middleware([
-    "auth:jwt",
+    "auth:admin",
   ]);
 }).prefix("product");

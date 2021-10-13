@@ -23,6 +23,9 @@ class Customer extends Model {
       }
     });
   }
+  wishlistCustomers() {
+    return this.hasMany("App/Models/WishlistCustomer", "id", "customer_id");
+  }
 }
 
 module.exports = Customer;
