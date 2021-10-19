@@ -26,3 +26,12 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+### Seeder
+
+Run the following command to run startup seed.
+
+```js
+adonis seed
+```
+
