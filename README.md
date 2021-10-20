@@ -18,6 +18,15 @@ adonis new yardstick --api-only
 
 or manually clone the repo and then run `npm install`.
 
+### .Env
+
+Create file .env. 
+Copy  all of file '.env.example' and paste in .env
+and add values in environment variables to connect to database.
+
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=
 
 ### Migrations
 
@@ -34,4 +43,3 @@ Run the following command to run startup seed.
 ```js
 adonis seed
 ```
-
