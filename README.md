@@ -23,11 +23,11 @@ or manually clone the repo and then run `npm install`.
 Create file .env. 
 Copy  all of file '.env.example' and paste in .env
 and add values in environment variables to connect to database.
-
+```
 DB_USER=
 DB_PASSWORD=
 DB_DATABASE=
-
+```
 ### Migrations
 
 Run the following command to run startup migrations.
